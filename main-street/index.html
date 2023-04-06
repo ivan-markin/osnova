@@ -3205,6 +3205,7 @@
     </script>
     <script>
       function comagicSendData(comagicData) {
+        window.top.postMessage('close-story', '*');
         console.log(comagicData);
         Comagic.addOfflineRequest(
           {
@@ -3223,14 +3224,12 @@
                 'Ошибка отправки';
               document.getElementById('construct_btn_send').textContent =
                 'Ошибка отправки';
-              window.top.postMessage('close-story', '*');
               return;
             }
             document.getElementById('send_call_btn').textContent =
               'Заявка успешно отправлена';
             document.getElementById('construct_btn_send').textContent =
               'Заявка успешно отправлена';
-            window.top.postMessage('close-story', '*');
           },
         );
       }
