@@ -3360,6 +3360,21 @@
         comagicData.formName = 'Форма: Получите индивидуальную подборку';
         comagicData.message = jsonString;
         comagicSendData(comagicData);
+
+        const scriptOne = document.createElement('script');
+        const scriptTwo = document.createElement('script');
+
+        scriptOne.textContent = `dataLayer.push({
+          event: 'GAevent',
+          eventCategory: 'form',
+          eventAction: 'send',
+          eventLabel: 'stories',
+        });`
+
+        scriptTwo.textContent = `ym(50545570, 'reachGoal', 'form_send_stories');`
+
+        document.body.appendChild(scriptOne);
+        document.body.appendChild(scriptTwo);
       };
       // ############# formPersonal Event #############
 
