@@ -3268,12 +3268,13 @@
       function comagicSendData(comagicData) {
         window.top.postMessage('close-story', '*');
         console.log(comagicData);
+        console.log(ym,'ym');
 
         function requestCallback(o) {
           let m = JSON.parse(o.response);
           if (!m.success) {
             console.log('Error send data');
-            console.log(o.response);
+            console.log(o.response);            
             document.getElementById('send_call_btn').textContent =
               'Ошибка отправки';
             document.getElementById('construct_btn_send').textContent =
@@ -3287,12 +3288,21 @@
           document.getElementById('construct_btn_send').textContent =
             'Заявка успешно отправлена';
           
-          appendScript();
+          dataLayer.push({
+            event: 'GAevent',
+            eventCategory: 'form',
+            eventAction: 'send',
+            eventLabel: 'stories',
+          });
 
-          setTimeout(() => {
-            document.body.removeChild(scriptOne);
-            document.body.removeChild(scriptTwo);
-          }, 1000)                      
+          ym(50545570, 'reachGoal', 'form_send_stories');
+          
+          // appendScript();
+
+          // setTimeout(() => {
+          //   document.body.removeChild(scriptOne);
+          //   document.body.removeChild(scriptTwo);
+          // }, 1000)                      
         }
 
         if (comagicData.formName === 'Форма: Заказать звонок') {
@@ -3328,22 +3338,22 @@
         }
       }
 
-      function appendScript() {
-        const scriptOne = document.createElement('script');
-        const scriptTwo = document.createElement('script');
+      // function appendScript() {
+      //   const scriptOne = document.createElement('script');
+      //   const scriptTwo = document.createElement('script');
 
-        scriptOne.textContent = `dataLayer.push({
-          event: 'GAevent',
-          eventCategory: 'form',
-          eventAction: 'send',
-          eventLabel: 'stories',
-        });`
+      //   scriptOne.innerHTML = `dataLayer.push({
+      //     event: 'GAevent',
+      //     eventCategory: 'form',
+      //     eventAction: 'send',
+      //     eventLabel: 'stories',
+      //   });`
 
-        scriptTwo.textContent = `ym(50545570, 'reachGoal', 'form_send_stories');`
+      //   scriptTwo.innerHTML = `ym(50545570, 'reachGoal', 'form_send_stories');`
 
-        document.body.appendChild(scriptOne);
-        document.body.appendChild(scriptTwo);
-      }
+      //   document.body.appendChild(scriptOne);
+      //   document.body.appendChild(scriptTwo);        
+      // }
 
       // ############# formPersonal Event #############
       document.getElementById('formPersonal').onsubmit = function () {
