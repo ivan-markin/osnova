@@ -64,7 +64,12 @@
 
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>RED7</title>
-    <script type="module" crossorigin src="assets/index.f8f5e442.js"></script>
+
+    <script type="text/javascript" 
+      async
+      src="https://app.comagic.ru/static/cs.min.js?k=6s8R10pAbKs_7XHRB82uZnR8E7p596ZF"
+    ></script>
+    <script type="module" crossorigin src="assets/index.834c391f.js"></script>
     <link rel="stylesheet" href="assets/index.feeeb086.css">
   </head>
 
@@ -3296,13 +3301,22 @@
         }
 
         if (comagicData.formName === 'Форма: Заказать звонок') {
+          console.log(Comagic);
+          
           Comagic.addOfflineRequest(
             {
               name: comagicData.name,
               email: comagicData.email,
               phone: comagicData.tel,
               form_name: comagicData.formName,
-              message: comagicData.message,
+              message: comagicData.message,              
+              // comagic_id: "7418580681.10903160196.1688553695",
+              // consultant_server_url: "https://server.comagic.ru/",
+              // hit_id: 26792384318,
+              // key: "6s8R10pAbKs_7XHRB82uZnR8E7p596ZF",
+              // session_id: 10903160196,
+              // site_key: "cSGuiEp5_mcN8Rf2ZOYNwNzkRR03LpPY",
+              // uri: "https://dev.red-7.ru/"  
             },            
             function(o) {requestCallback(o)}
           );
@@ -3321,7 +3335,7 @@
               square_to: comagicData.squareTo,
               cost: comagicData.cost,
               form_name: comagicData.formName,
-              message: comagicData.message,              
+              message: comagicData.message,                  
             },
             function(o) {requestCallback(o)}
           );
@@ -3436,29 +3450,21 @@
         });
       });
       // ############# Phone mask #############
-    </script>
+    </script>    
 
-    <script type="text/javascript">
+    <!-- <script type="text/javascript">
+      var __cs = __cs || [];
+      __cs.push(['setCsAccount', '6s8R10pAbKs_7XHRB82uZnR8E7p596ZF']);
+    </script> -->
+    
+    <!-- <script type="text/javascript">
       var __cs = __cs || [];
       __cs.push(['setCsAccount', 'P9MGH_SwFkyiulNp2y0zlvS_NsTzwYlk']);
-    </script>
-    <script
+    </script> -->
+    <!-- <script
       type="text/javascript"
       async
       src="https://app.comagic.ru/static/cs.min.js"
-    ></script>   
-    
-    <!-- <script>
-      dataLayer.push({
-        event: 'GAevent',
-        eventCategory: 'form',
-        eventAction: 'send',
-        eventLabel: 'stories',
-      });
-    </script>
-
-    <script>
-      ym(50545570, 'reachGoal', 'form_send_stories');
-    </script> -->
+    ></script>           -->
   </body>
 </html>
