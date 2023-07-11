@@ -69,7 +69,7 @@
       async
       src="https://app.comagic.ru/static/cs.min.js?k=6s8R10pAbKs_7XHRB82uZnR8E7p596ZF"
     ></script>
-    <script type="module" crossorigin src="assets/index.834c391f.js"></script>
+    <script type="module" crossorigin src="assets/index.43f21eb5.js"></script>
     <link rel="stylesheet" href="assets/index.feeeb086.css">
   </head>
 
@@ -3278,7 +3278,7 @@
           let m = JSON.parse(o.response);
           if (!m.success) {
             console.log('Error send data');
-            console.log(o.response);            
+            // console.log(o.response);            
             document.getElementById('send_call_btn').textContent =
               'Ошибка отправки';
             document.getElementById('construct_btn_send').textContent =
@@ -3288,7 +3288,7 @@
           document.getElementById('send_call_btn').textContent =
             'Заявка успешно отправлена';
           document.getElementById('construct_btn_send').textContent =
-            'Заявка успешно отправлена';
+            'Заявка успешно отправлена';                      
           
           dataLayer.push({
             event: 'GAevent',
@@ -3298,25 +3298,19 @@
           });
 
           ym(50545570, 'reachGoal', 'form_send_stories');                                      
+
+          document.getElementById('callbackForm').reset();  
+          document.getElementById('formPersonal').reset();  
         }
 
-        if (comagicData.formName === 'Форма: Заказать звонок') {
-          console.log(Comagic);
-          
+        if (comagicData.formName === 'Форма: Заказать звонок') {              
           Comagic.addOfflineRequest(
             {
               name: comagicData.name,
               email: comagicData.email,
               phone: comagicData.tel,
               form_name: comagicData.formName,
-              message: comagicData.message,              
-              // comagic_id: "7418580681.10903160196.1688553695",
-              // consultant_server_url: "https://server.comagic.ru/",
-              // hit_id: 26792384318,
-              // key: "6s8R10pAbKs_7XHRB82uZnR8E7p596ZF",
-              // session_id: 10903160196,
-              // site_key: "cSGuiEp5_mcN8Rf2ZOYNwNzkRR03LpPY",
-              // uri: "https://dev.red-7.ru/"  
+              message: comagicData.message,                           
             },            
             function(o) {requestCallback(o)}
           );
@@ -3378,7 +3372,7 @@
         comagicData.cost = cost.value;
         comagicData.formName = 'Форма: Получите индивидуальную подборку';
         comagicData.message = jsonString;
-        comagicSendData(comagicData);        
+        comagicSendData(comagicData);           
       };
       // ############# formPersonal Event #############
 
@@ -3402,8 +3396,8 @@
         comagicData.name = name.value;
         comagicData.tel = tel.value;
         comagicData.formName = 'Форма: Заказать звонок';
-        comagicData.message = jsonString;
-        comagicSendData(comagicData);        
+        comagicData.message = jsonString;        
+        comagicSendData(comagicData);             
       };
       // ############# formCallback Event #############
 
