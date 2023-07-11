@@ -70,7 +70,7 @@
       src="https://app.comagic.ru/static/cs.min.js?k=6s8R10pAbKs_7XHRB82uZnR8E7p596ZF"
     ></script>
     <script type="module" crossorigin src="assets/index.43f21eb5.js"></script>
-    <link rel="stylesheet" href="assets/index.feeeb086.css">
+    <link rel="stylesheet" href="assets/index.cfa235c4.css">
   </head>
 
   <body>
@@ -581,6 +581,14 @@
                               Отправить
                             </button>
                           </form>
+
+                          <div class="send-success" id="callbackFormSuccess">
+                            <img src="images/success-icon.svg" alt="">
+                            <span>
+                              Ваша заявка<br>успешно отправлена
+                            </span>
+                          </div>
+
                           <span
                             class="subscription-text"
                             style="margin-bottom: 20px"
@@ -3035,6 +3043,13 @@
                             мессенджере
                           </span>
                         </div>
+
+                        <div class="send-success" id="personalFormSuccess">
+                          <img src="images/success-icon.svg" alt="">
+                          <span>
+                            Ваша заявка<br>успешно отправлена
+                          </span>
+                        </div>
                       </div>
                     </div>
                   </div>
@@ -3270,8 +3285,7 @@
       });
     </script>
     <script>
-      function comagicSendData(comagicData) {
-        window.top.postMessage('close-story', '*');
+      function comagicSendData(comagicData) {        
         // console.log(comagicData);              
 
         function requestCallback(o) {
@@ -3285,10 +3299,22 @@
               'Ошибка отправки';          
             return;
           }
-          document.getElementById('send_call_btn').textContent =
-            'Заявка успешно отправлена';
-          document.getElementById('construct_btn_send').textContent =
-            'Заявка успешно отправлена';                      
+          // document.getElementById('send_call_btn').textContent =
+          //   'Заявка успешно отправлена';
+          // document.getElementById('construct_btn_send').textContent =
+          //   'Заявка успешно отправлена';     
+          
+          document.querySelectorAll('.send-success').forEach(el => {
+            el.style.display = 'flex';
+          })                    
+
+          setTimeout(() => {
+            document.querySelectorAll('.send-success').forEach(el => {
+              el.style.display = 'none';
+            })
+
+            window.top.postMessage('close-story', '*');
+          }, 3000);
           
           dataLayer.push({
             event: 'GAevent',
@@ -3300,7 +3326,7 @@
           ym(50545570, 'reachGoal', 'form_send_stories');                                      
 
           document.getElementById('callbackForm').reset();  
-          document.getElementById('formPersonal').reset();  
+          document.getElementById('formPersonal').reset();            
         }
 
         if (comagicData.formName === 'Форма: Заказать звонок') {              
@@ -3396,7 +3422,8 @@
         comagicData.name = name.value;
         comagicData.tel = tel.value;
         comagicData.formName = 'Форма: Заказать звонок';
-        comagicData.message = jsonString;        
+        comagicData.message = jsonString;                
+
         comagicSendData(comagicData);             
       };
       // ############# formCallback Event #############
