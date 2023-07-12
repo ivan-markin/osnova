@@ -3311,22 +3311,22 @@
           setTimeout(() => {
             document.querySelectorAll('.send-success').forEach(el => {
               el.style.display = 'none';
-            })
+            })            
+
+            dataLayer.push({
+              event: 'GAevent',
+              eventCategory: 'form',
+              eventAction: 'send',
+              eventLabel: 'stories',
+            });
+
+            ym(50545570, 'reachGoal', 'form_send_stories');                                      
+
+            document.getElementById('callbackForm').reset();  
+            document.getElementById('formPersonal').reset(); 
 
             window.top.postMessage('close-story', '*');
-          }, 3000);
-          
-          dataLayer.push({
-            event: 'GAevent',
-            eventCategory: 'form',
-            eventAction: 'send',
-            eventLabel: 'stories',
-          });
-
-          ym(50545570, 'reachGoal', 'form_send_stories');                                      
-
-          document.getElementById('callbackForm').reset();  
-          document.getElementById('formPersonal').reset();            
+          }, 3000);                               
         }
 
         if (comagicData.formName === 'Форма: Заказать звонок') {              
