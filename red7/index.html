@@ -3318,9 +3318,9 @@
           
           document.querySelectorAll('.send-success').forEach(el => {
             el.style.display = 'flex';
-          })                    
-
-          setTimeout(function() {
+          })   
+          
+          function onTimeout() {
             document.querySelectorAll('.send-success').forEach(el => {
               el.style.display = 'none';
             })            
@@ -3338,7 +3338,9 @@
             document.getElementById('formPersonal').reset(); 
 
             window.top.postMessage('close-story', '*');
-          }, 3000);                               
+          }
+
+          setTimeout(onTimeout, 3000);                               
         }
 
         if (comagicData.formName === 'Форма: Заказать звонок') {              

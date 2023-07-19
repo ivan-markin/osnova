@@ -64,7 +64,13 @@
 
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>VERY</title>
-    <script type="module" crossorigin src="assets/index.927de3c6.js"></script>
+
+    <script
+      type="text/javascript"
+      async
+      src="https://app.comagic.ru/static/cs.min.js?k=6s8R10pAbKs_7XHRB82uZnR8E7p596ZF"
+    ></script>
+    <script type="module" crossorigin src="assets/index.6384d705.js"></script>
     <link rel="stylesheet" href="assets/index.7d2bc10d.css">
   </head>
 
@@ -3060,24 +3066,45 @@
     </script>
     <script>
       function comagicSendData(comagicData) {
-        window.top.postMessage('close-story', '*');
-        console.log(comagicData);
+        // console.log(comagicData);
 
         function requestCallback(o) {
           let m = JSON.parse(o.response);
           if (!m.success) {
             console.log('Error send data');
-            console.log(o.response);
+            // console.log(o.response);
             document.getElementById('send_call_btn').textContent =
               'Ошибка отправки';
             document.getElementById('construct_btn_send').textContent =
               'Ошибка отправки';
             return;
           }
-          document.getElementById('send_call_btn').textContent =
-            'Заявка успешно отправлена';
-          document.getElementById('construct_btn_send').textContent =
-            'Заявка успешно отправлена';
+
+          document.querySelectorAll('.send-success').forEach((el) => {
+            el.style.display = 'flex';
+          });
+
+          function onTimeout() {
+            document.querySelectorAll('.send-success').forEach((el) => {
+              el.style.display = 'none';
+            });
+
+            dataLayer.push({
+              event: 'GAevent',
+              eventCategory: 'form',
+              eventAction: 'send',
+              eventLabel: 'stories',
+            });
+
+            ym(50545570, 'reachGoal', 'form_send_stories');
+
+            document.getElementById('callbackForm').reset();
+            document.getElementById('formPersonal').reset();
+
+            window.top.postMessage('close-story', '*');
+          }
+
+          setTimeout(onTimeout, 3000);
         }
 
         if (comagicData.formName === 'Форма: Заказать звонок') {
@@ -3089,7 +3116,9 @@
               form_name: comagicData.formName,
               message: comagicData.message,
             },
-            requestCallback(o),
+            function (o) {
+              requestCallback(o);
+            },
           );
         }
 
@@ -3108,7 +3137,9 @@
               form_name: comagicData.formName,
               message: comagicData.message,
             },
-            requestCallback(o),
+            function (o) {
+              requestCallback(o);
+            },
           );
         }
       }
@@ -3174,6 +3205,7 @@
         comagicData.tel = tel.value;
         comagicData.formName = 'Форма: Заказать звонок';
         comagicData.message = jsonString;
+
         comagicSendData(comagicData);
       };
       // ############# formCallback Event #############
@@ -3222,7 +3254,7 @@
       });
       // ############# Phone mask #############
     </script>
-    <script type="text/javascript">
+    <!-- <script type="text/javascript">
       var __cs = __cs || [];
       __cs.push(['setCsAccount', 'P9MGH_SwFkyiulNp2y0zlvS_NsTzwYlk']);
     </script>
@@ -3230,6 +3262,6 @@
       type="text/javascript"
       async
       src="https://app.comagic.ru/static/cs.min.js"
-    ></script>
+    ></script> -->
   </body>
 </html>
