@@ -3066,13 +3066,13 @@
     </script>
     <script>
       function comagicSendData(comagicData) {
-        // console.log(comagicData);
+        console.log(comagicData);
 
         function requestCallback(o) {
           let m = JSON.parse(o.response);
           if (!m.success) {
             console.log('Error send data');
-            // console.log(o.response);
+            console.log(o.response);
             document.getElementById('send_call_btn').textContent =
               'Ошибка отправки';
             document.getElementById('construct_btn_send').textContent =
