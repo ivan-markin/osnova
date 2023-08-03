@@ -3080,6 +3080,8 @@
             return;
           }
 
+          console.log('Data sent successfully');
+
           document.querySelectorAll('.send-success').forEach((el) => {
             el.style.display = 'flex';
           });
@@ -3111,7 +3113,6 @@
           Comagic.addOfflineRequest(
             {
               name: comagicData.name,
-              email: comagicData.email,
               phone: comagicData.tel,
               form_name: comagicData.formName,
               message: comagicData.message,
